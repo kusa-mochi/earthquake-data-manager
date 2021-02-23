@@ -1,0 +1,10 @@
+version: "3.8"
+services: 
+  app:
+    command: "/bin/bash"
+    image: whoatemyapplepie/earthquake-data-manager:0.1.0
+    ports: 
+      - 9090:80
+    tty: true
+    volumes: 
+      - ${PWD}:/app
