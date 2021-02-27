@@ -52,6 +52,6 @@ catch(PDOException $e)
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-    echo $row['dt'].' '.$row['lat'].' '.$row['lon'].' '.$row['depth'].' '.$row['mag']."\n";
+    echo $row['dt'].','.$row['lat'].','.$row['lon'].','.$row['depth'].','.$row['mag'].";";
 }
 ?>
