@@ -47,11 +47,19 @@ try
 }
 catch(PDOException $e)
 {
-  // エラー処理
+  throw new Exception();
 }
 
+$ary = array();
 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-    echo $row['dt'].','.$row['lat'].','.$row['lon'].','.$row['depth'].','.$row['mag'].";";
+  $ary[] = array(
+    'datetime' => $row['dt'],
+    'latitude' => floatval($row['lat']),
+    'longitude' => floatval($row['lon']),
+    'depth' => floatval($row['depth']),
+    'magnitude' => floatval($row['mag'])
+  );
 }
+echo json_encode($ary);
 ?>
