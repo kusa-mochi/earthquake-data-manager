@@ -50,16 +50,24 @@ catch(PDOException $e)
   throw new Exception();
 }
 
-$ary = array();
+$latitudes = array();
+$longitudes = array();
+$depths = array();
+$magnitudes = array();
 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-  $ary[] = array(
-    'datetime' => $row['dt'],
-    'latitude' => floatval($row['lat']),
-    'longitude' => floatval($row['lon']),
-    'depth' => floatval($row['depth']),
-    'magnitude' => floatval($row['mag'])
-  );
+  $latitudes[] = floatval($row['lat']);
+  $longitudes[] = floatval($row['lon']);
+  $depths[] = floatval($row['depth']);
+  $magnitudes[] = floatval($row['mag']);
 }
-echo json_encode($ary);
+
+$returns = array(
+  "latitude" => $latitudes,
+  "longitude" => $longitudes,
+  "depth" => $depths,
+  "magnitude" => $magnitudes
+);
+
+echo json_encode($returns);
 ?>
